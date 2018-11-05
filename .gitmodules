@@ -1,0 +1,3 @@
+[submodule "hyst"]
+	path = hyst
+	url = https://github.com/verivital/hyst
