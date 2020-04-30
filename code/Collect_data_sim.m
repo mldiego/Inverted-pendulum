@@ -10,7 +10,7 @@ for i=1:50
     x0 = rand-0.5; %have a inital position between [-0.5,0.5]
     rng(1); %set the seed for reproducible results
     theta0 = rand*0.4-0.2; % have a initial angle between [-0.2,0.2]
-    [T,X] = sim('ClosedLoop_Kcont',[0 15],opt); %simulate system and record data
+    [T,X] = sim('../Simulink/ClosedLoop_Kcont',[0 15],opt); %simulate system and record data
     % Create data object for each iteration
     states = [xx xxdot xtheta xthetadot];
     force = u;
@@ -23,8 +23,8 @@ for i=1:50
     end
 end
 
-clearvars -except dataf;
-save('../data/invpend_data','dataf'); 
+% clearvars -except dataf;
+% save('../data/invpend_data','dataf'); 
 
 %% Generate testing data
 clc;clear
@@ -35,7 +35,7 @@ for i=1:10
     x0 = rand-0.5; %have a inital position between [-0.5,0.5]
     rng(2); %set the seed for reproducible results
     theta0 = rand*0.4-0.2; % have a initial angle between [-0.2,0.2]
-    [T,X] = sim('ClosedLoop_Kcont',[0 15],opt); %simulate system and record data
+    [T,X] = sim('../Simulink/ClosedLoop_Kcont',[0 15],opt); %simulate system and record data
     % Create data object for each iteration
     states = [xx xxdot xtheta xthetadot];
     force = u;
@@ -48,5 +48,5 @@ for i=1:10
     end
 end
 
-clearvars -except datatest;
-save('../data/invpend_data_test','datatest'); 
+% clearvars -except datatest;
+% save('../data/invpend_data_test','datatest'); 
