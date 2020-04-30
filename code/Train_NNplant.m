@@ -1,6 +1,6 @@
 %% Train a neural network for the inverted pendulum plant
 % Load data
-d = load('invpend_data');
+d = load('../data/invpend_data');
 in = d.out;
 out = d.in;
 
@@ -17,7 +17,7 @@ net.layers{1}.transferFcn = 'poslin'; %poslin = relu
 net.layers{2}.transferFcn = 'poslin'; % tansig = tanh
 net.layers{3}.transferFcn = 'purelin'; % purelin = linear
 net.initFcn = 'initlay';
-net.trainFcn = 'trainlm'; %Levenberg–Marquardt algorithm
+net.trainFcn = 'trainlm'; %Levenbergï¿½Marquardt algorithm
 net.layers{1}.initFcn = 'initnw';
 net.layers{2}.initFcn = 'initnw';
 net.layers{3}.initFcn = 'initnw';

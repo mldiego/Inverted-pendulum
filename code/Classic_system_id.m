@@ -1,7 +1,7 @@
 %% System Identification for the plant using classical methods
 clc;clear
 % load data
-load('invpend_data');
+load('../data/invpend_data');
 
 %% Estimate the state-space model with input force and all 4 outputs
 %define the options
@@ -28,7 +28,7 @@ Inv_pend_cont2 = d2c(Inv_pend2,'tustin');
 %save('Inv_pend_cont_ss','Inv_pend_cont');
 
 %% Test the model
-load('invpend_data_test');
+load('../data/invpend_data_test');
 out1 = sim(Inv_pend,datatest);
 plot(out1.OutputData{4})
 hold on;

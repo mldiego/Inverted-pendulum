@@ -1,10 +1,22 @@
-%% Create neural network controller
-clc;clear
-% Load data 
-d = load('invpend_data');
-out = d.out;
-in = d.in;
+%% Create and train neural network controller
+clc;clear;close all;
+%% Load data 
+load('../data/invpend_data');
+out = dataf.u;
+in = dataf.y;
+% Prepare data
+for i=1:length(in)
+    out{i} = out{i}';
+    in{i} = in{i}';
+end
 
+% Divide for training and testing
+out_train = out{1:46};
+out_test = out{47:end};
+in_train = in{1:46};
+in_test = in{47:end};
+
+%% Create NN
 net = network(1,2,[1;1],[1;0],[0 0;1 0],[0,1]); %4 inputs,2 layers, 1 output
 
 % add the rest of structure
@@ -17,17 +29,12 @@ net.initFcn = 'initlay';
 net.trainFcn = 'trainbr'; %Bayesian regularization
 net.layers{1}.initFcn = 'initnw';
 net.layers{2}.initFcn = 'initnw';
-%net.inputWeights{1}.delays = 0:1;
 
-%Store the output simulations
-y1 = net(in);
+% Train NN
 net = init(net);
-net = train(net,in,out);
-y2 = net(in);
-% out = cell2mat(out);
+net = train(net,in_train,out_train);
 
-% Calculate fit percentage
-error = abs(y2-out);
-error = error./out*100;
-error = sum(error)/length(error);
-fit_percentage_cont = 100- error;
+
+%% Calculate performance on train data
+y = net(in_test);
+performance = perform(net,out_test,y);

@@ -3,13 +3,13 @@
 %% 1. Load test data
 clc;clear
 % load data
-d = load('invpend_data_test');
+d = load('../data/invpend_data_test');
 force = d.out;
 states = d.in;
 
 %% 2. Find initial states
 % Load the ss model
-load('Inv_pend');
+load('../data/Inv_pend');
 
 %Test inverted pensulum model
 TestData = iddata(states',force',0.02);

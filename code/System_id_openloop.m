@@ -1,7 +1,7 @@
 %% System Identification for the plant using classical methods with open loop data
 clc;clear
 % load data
-load('inv_openloop_sine');
+load('../data/inv_openloop_sine');
 force = openloop(6,:);
 states = openloop(2:5,:);
 %% Estimate the state-space model with input force and all 4 outputs

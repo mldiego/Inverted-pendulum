@@ -24,7 +24,7 @@ for i=1:50
 end
 
 clearvars -except dataf;
-save('invpend_data','dataf'); 
+save('../data/invpend_data','dataf'); 
 
 %% Generate testing data
 clc;clear
@@ -49,4 +49,4 @@ for i=1:10
 end
 
 clearvars -except datatest;
-save('invpend_data_test','datatest'); 
+save('../data/invpend_data_test','datatest'); 
